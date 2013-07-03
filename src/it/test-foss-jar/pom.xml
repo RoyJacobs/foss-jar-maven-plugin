@@ -11,6 +11,20 @@
     </properties>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.3</version>
+                    <configuration>
+                        <rules>
+                            <AlwaysPass/>
+                        </rules>
+                    </configuration>
+                </plugin>
+            </plugins>                
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>@project.groupId@</groupId>
