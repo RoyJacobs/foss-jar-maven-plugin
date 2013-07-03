@@ -37,9 +37,16 @@ public class MyMojo extends AbstractMojo {
      */
     @Parameter(property = "project.build.directory", required = true, readonly = true)
     private File outputDirectory;
-    
-    @Inject
-    public MyMojo(final File outputDirectory) {
+
+    public MyMojo() {
+        super();
+    }
+
+    /**
+     * Just for tests.
+     * @param outputDirectory 
+     */
+    MyMojo(final File outputDirectory) {
         this.outputDirectory = outputDirectory;
     }
 

@@ -13,10 +13,10 @@
     <packaging>maven-plugin</packaging>
 
     <name>1-and-1 :: foss-jar.maven-plugin for Apache Maven</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/mfriedenhagen/foss-jar-maven-plugin</url>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
         <jacoco.check.instructionRatio>0.65</jacoco.check.instructionRatio>
         <jacoco.check.lineRatio>0.85</jacoco.check.lineRatio>
     </properties>

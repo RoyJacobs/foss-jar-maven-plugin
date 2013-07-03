@@ -39,5 +39,6 @@ public class MyMojoTest {
         assertTrue(touchFile + " does not exist", touchFile.exists());
         instance.execute();
         assertTrue(touchFile + " does not exist", touchFile.exists());
+        instance = new MyMojo();
     }
 }
