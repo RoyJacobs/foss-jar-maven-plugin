@@ -20,7 +20,7 @@
     <components>
         <component>
             <role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
-            <role-hint>fossjar</role-hint>
+            <role-hint>foss-jar</role-hint>
             <implementation>
                 org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping
             </implementation>
@@ -47,11 +47,11 @@
         </component>
         <component>
             <role>org.apache.maven.artifact.handler.ArtifactHandler</role>
-            <role-hint>fossjar</role-hint>
+            <role-hint>foss-jar</role-hint>
             <implementation>org.apache.maven.artifact.handler.DefaultArtifactHandler</implementation>
             <configuration>
-                <extension>jar</extension>
-                <type>fossjar</type>
+                <extension>foss-jar</extension>
+                <type>foss-jar</type>
                 <language>java</language>
             </configuration>
         </component>
