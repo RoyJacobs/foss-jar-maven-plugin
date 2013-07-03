@@ -36,7 +36,11 @@
                     <package>org.apache.maven.plugins:maven-jar-plugin:jar</package>
                     <install>org.apache.maven.plugins:maven-install-plugin:install</install>
                     <integration-test>org.apache.maven.plugins:maven-failsafe-plugin:integration-test</integration-test>
-                    <verify>org.apache.maven.plugins:maven-failsafe-plugin:verify</verify>
+                    <verify>
+                        org.apache.maven.plugins:maven-failsafe-plugin:verify,
+                        org.apache.maven.plugins:maven-pmd-plugin:check,
+                        org.apache.maven.plugins:maven-pmd-plugin:cpd-check
+                    </verify>
                     <deploy>org.apache.maven.plugins:maven-deploy-plugin:deploy</deploy>
                 </phases>
             </configuration>
