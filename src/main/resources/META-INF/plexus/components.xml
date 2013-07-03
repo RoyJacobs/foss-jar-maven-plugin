@@ -21,9 +21,7 @@
         <component>
             <role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
             <role-hint>foss-jar</role-hint>
-            <implementation>
-                org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping
-            </implementation>
+            <implementation>org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping</implementation>
             <configuration>
                 <phases>
                     <validate>org.apache.maven.plugins:maven-enforcer-plugin:enforce</package>
@@ -50,8 +48,9 @@
             <role-hint>foss-jar</role-hint>
             <implementation>org.apache.maven.artifact.handler.DefaultArtifactHandler</implementation>
             <configuration>
-                <extension>foss-jar</extension>
-                <type>foss-jar</type>
+                <extension>jar</extension>
+                <type>jar</type>
+                <packaging>foss-jar</packaging>
                 <language>java</language>
             </configuration>
         </component>
