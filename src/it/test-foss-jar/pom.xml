@@ -4,7 +4,7 @@
     <groupId>@project.groupId@</groupId>
     <artifactId>@project.artifactId@-test-foss-jar</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>foss-jar</packaging>
+    <packaging>fossjar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
