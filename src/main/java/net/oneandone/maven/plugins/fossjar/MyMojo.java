@@ -21,7 +21,6 @@ import org.apache.maven.plugin.MojoExecutionException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import javax.inject.Inject;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
