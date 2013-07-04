@@ -33,7 +33,6 @@
                     <test-compile>org.apache.maven.plugins:maven-compiler-plugin:testCompile</test-compile>
                     <test>org.apache.maven.plugins:maven-surefire-plugin:test</test>
                     <package>org.apache.maven.plugins:maven-jar-plugin:jar</package>
-                    <install>org.apache.maven.plugins:maven-install-plugin:install</install>
                     <integration-test>org.apache.maven.plugins:maven-failsafe-plugin:integration-test</integration-test>
                     <verify>
                         org.apache.maven.plugins:maven-failsafe-plugin:verify,
@@ -41,8 +40,50 @@
                         org.apache.maven.plugins:maven-pmd-plugin:cpd-check,
                         org.jacoco:jacoco-maven-plugin:report
                     </verify>
+                    <install>org.apache.maven.plugins:maven-install-plugin:install</install>
                     <deploy>org.apache.maven.plugins:maven-deploy-plugin:deploy</deploy>
                 </phases>
+            </configuration>
+        </component>
+        <component>
+            <role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
+            <role-hint>war</role-hint>
+            <implementation>org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping</implementation>
+            <configuration>
+                <lifecycles>
+                    <lifecycle>
+                        <id>default</id>
+                        <phases>
+                            <initialize>org.jacoco:jacoco-maven-plugin:prepare-agent</initialize>
+                            <validate>org.apache.maven.plugins:maven-enforcer-plugin:enforce</validate>
+                            <process-sources>net.oneandone.maven.plugins:foss-jar-maven-plugin:touch</process-sources>
+                            <process-resources>org.apache.maven.plugins:maven-resources-plugin:resources</process-resources>
+                            <compile>org.apache.maven.plugins:maven-compiler-plugin:compile</compile>
+                            <process-test-resources>org.apache.maven.plugins:maven-resources-plugin:testResources</process-test-resources>
+                            <test-compile>org.apache.maven.plugins:maven-compiler-plugin:testCompile</test-compile>
+                            <test>org.apache.maven.plugins:maven-surefire-plugin:test</test>
+                            <package>org.apache.maven.plugins:maven-war-plugin:war</package>
+                            <integration-test>org.apache.maven.plugins:maven-failsafe-plugin:integration-test</integration-test>
+                            <verify>
+                                org.apache.maven.plugins:maven-failsafe-plugin:verify,
+                                org.apache.maven.plugins:maven-pmd-plugin:check,
+                                org.apache.maven.plugins:maven-pmd-plugin:cpd-check,
+                                org.jacoco:jacoco-maven-plugin:report
+                            </verify>
+                            <install>org.apache.maven.plugins:maven-install-plugin:install</install>
+                            <deploy>org.apache.maven.plugins:maven-deploy-plugin:deploy</deploy>
+                        </phases>
+                    </lifecycle>
+                    <lifecycle>
+                        <id>webtest</id>
+                        <phases>
+                            <pre-webtest>org.apache.maven.plugins:maven-enforcer-plugin:enforce</pre-webtest>
+                            <webtest></webtest>
+                            <post-webtest></post-webtest>
+                            <verify-webtest></verify-webtest>
+                        </phases>
+                    </lifecycle>
+                </lifecycles>
             </configuration>
         </component>
         <component>
@@ -52,11 +93,32 @@
             <configuration>
                 <phases>
                     <validate>org.apache.maven.plugins:maven-enforcer-plugin:enforce</validate>
-                    <process-sources>net.oneandone.maven.plugins:foss-jar-maven-plugin:touch</process-sources>
-                    <process-resources>org.apache.maven.plugins:maven-resources-plugin:resources</process-resources>
+                    <package>org.apache.maven.plugins:maven-site-plugin:attach-descriptor</package>
                     <install>org.apache.maven.plugins:maven-install-plugin:install</install>
                     <deploy>org.apache.maven.plugins:maven-deploy-plugin:deploy</deploy>
                 </phases>
+            </configuration>
+        </component>
+        <!-- 'webtest' lifecycle, with default binding -->
+        <component>
+            <role>org.apache.maven.lifecycle.Lifecycle</role>
+            <implementation>org.apache.maven.lifecycle.Lifecycle</implementation>
+            <role-hint>webtest</role-hint>
+            <configuration>
+                <id>webtest</id>
+                <!-- START SNIPPET: webtest -->
+                <phases>
+                    <phase>pre-webtest</phase>
+                    <phase>webtest</phase>
+                    <phase>post-webtest</phase>
+                    <phase>verify-webtest</phase>
+                </phases>
+                <default-phases>
+                    <webtest>
+                        org.apache.maven.plugins:maven-clean-plugin:2.5:clean
+                    </webtest>
+                </default-phases>
+                <!-- END SNIPPET: webtest -->
             </configuration>
         </component>
     </components>
