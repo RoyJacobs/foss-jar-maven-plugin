@@ -20,10 +20,11 @@
     <components>
         <component>
             <role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
-            <role-hint>foss-jar</role-hint>
+            <role-hint>jar</role-hint>
             <implementation>org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping</implementation>
             <configuration>
                 <phases>
+                    <initialize>org.jacoco:jacoco-maven-plugin:prepare-agent</initialize>
                     <validate>org.apache.maven.plugins:maven-enforcer-plugin:enforce</validate>
                     <process-sources>net.oneandone.maven.plugins:foss-jar-maven-plugin:touch</process-sources>
                     <process-resources>org.apache.maven.plugins:maven-resources-plugin:resources</process-resources>
@@ -37,21 +38,25 @@
                     <verify>
                         org.apache.maven.plugins:maven-failsafe-plugin:verify,
                         org.apache.maven.plugins:maven-pmd-plugin:check,
-                        org.apache.maven.plugins:maven-pmd-plugin:cpd-check
+                        org.apache.maven.plugins:maven-pmd-plugin:cpd-check,
+                        org.jacoco:jacoco-maven-plugin:report
                     </verify>
                     <deploy>org.apache.maven.plugins:maven-deploy-plugin:deploy</deploy>
                 </phases>
             </configuration>
         </component>
         <component>
-            <role>org.apache.maven.artifact.handler.ArtifactHandler</role>
-            <role-hint>foss-jar</role-hint>
-            <implementation>org.apache.maven.artifact.handler.DefaultArtifactHandler</implementation>
+            <role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
+            <role-hint>pom</role-hint>
+            <implementation>org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping</implementation>
             <configuration>
-                <extension>jar</extension>
-                <type>jar</type>
-                <packaging>foss-jar</packaging>
-                <language>java</language>
+                <phases>
+                    <validate>org.apache.maven.plugins:maven-enforcer-plugin:enforce</validate>
+                    <process-sources>net.oneandone.maven.plugins:foss-jar-maven-plugin:touch</process-sources>
+                    <process-resources>org.apache.maven.plugins:maven-resources-plugin:resources</process-resources>
+                    <install>org.apache.maven.plugins:maven-install-plugin:install</install>
+                    <deploy>org.apache.maven.plugins:maven-deploy-plugin:deploy</deploy>
+                </phases>
             </configuration>
         </component>
     </components>
