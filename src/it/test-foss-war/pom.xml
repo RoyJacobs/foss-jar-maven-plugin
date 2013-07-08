@@ -45,16 +45,13 @@
                     <executions>
                         <execution>
                             <id>webtest-integration-test</id>
-                            <phase>webtest</phase>
+                            <phase>webtest-test</phase>
                             <goals>
                                 <goal>integration-test</goal>
                             </goals>
                             <configuration>
-                                <excludes>
-                                    <exclude>**/*.java</exclude>
-                                </excludes>
                                 <includes>
-                                    <include>**/*ITWeb.java</include>
+                                    <include>**/*ITWeb.*</include>
                                 </includes>
                             </configuration>
                         </execution>

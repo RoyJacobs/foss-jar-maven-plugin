@@ -77,10 +77,14 @@
                     <lifecycle>
                         <id>webtest</id>
                         <phases>
-                            <pre-webtest>org.apache.tomcat.maven:tomcat7-maven-plugin:2.0:run-war-only</pre-webtest>
-                            <webtest>org.apache.maven.plugins:maven-failsafe-plugin:2.15:integration-test</webtest>
-                            <post-webtest>org.apache.tomcat.maven:tomcat7-maven-plugin:2.0:shutdown</post-webtest>
-                            <verify-webtest></verify-webtest>
+                            <webtest-compile>
+                                org.apache.maven.plugins:maven-resources-plugin:testResources,
+                                org.apache.maven.plugins:maven-compiler-plugin:testCompile
+                            </webtest-compile>
+                            <webtest-pre>org.apache.tomcat.maven:tomcat7-maven-plugin:2.0:run-war-only</webtest-pre>
+                            <webtest-test>org.apache.maven.plugins:maven-failsafe-plugin:2.15:integration-test</webtest-test>
+                            <webtest-post>org.apache.tomcat.maven:tomcat7-maven-plugin:2.0:shutdown</webtest-post>
+                            <webtest-verify>org.apache.maven.plugins:maven-failsafe-plugin:2.15:verify</webtest-verify>
                         </phases>
                     </lifecycle>
                 </lifecycles>
@@ -108,10 +112,11 @@
                 <id>webtest</id>
                 <!-- START SNIPPET: webtest -->
                 <phases>
-                    <phase>pre-webtest</phase>
-                    <phase>webtest</phase>
-                    <phase>post-webtest</phase>
-                    <phase>verify-webtest</phase>
+                    <phase>webtest-compile</phase>
+                    <phase>webtest-pre</phase>
+                    <phase>webtest-test</phase>
+                    <phase>webtest-post</phase>
+                    <phase>webtest-verify</phase>
                 </phases>
                 <!-- END SNIPPET: webtest -->
             </configuration>
