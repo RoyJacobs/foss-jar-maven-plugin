@@ -73,6 +73,7 @@
                         <tomcatLoggingFile>src/test/resources/logging.properties</tomcatLoggingFile>
                         <fork>true</fork>
                         <skipErrorOnShutdown>true</skipErrorOnShutdown>
+                        <contextFile>src/test/context.xml</contextFile>
                     </configuration>
                 </plugin>
             </plugins>
